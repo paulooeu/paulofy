@@ -5,7 +5,30 @@ export const Container = styled.div`
   height: 100%;
   flex: 0 0 320px;
 
-  flex-grow: 0;
-  flex-shrink: 0;
-  flex-basis: 230px;
+  & + div {
+    border-left: 1px solid rgba(0, 0, 0, 0.05);
+  }
+
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 42px;
+    h2 {
+      font-weight: 500;
+      font-size: 16px;
+      padding: 0 10px;
+    }
+    button {
+      width: 42px;
+      height: 42px;
+      border-radius: 18px;
+      background: #3b5bfb;
+      border: 0;
+      cursor: pointer;
+    }
+  }
+  ul {
+    margin-top: 30px;
+  }
 `;
