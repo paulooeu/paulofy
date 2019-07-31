@@ -1,18 +1,23 @@
 import React from "react";
-
+import { useDrag } from "react-dnd";
 import { Container, Label } from "./styles";
 
-export default function Card() {
+export default function Card({ data }) {
+  const [{ isDragging }, dragRef] = useDrag({
+    item: { type: "CARD" },
+    collect: monitor => ({
+      isDragging: monitor.isDragging()
+    })
+  });
   return (
-    <Container>
+    <Container ref={dragRef}>
       <header>
-        <Label color="#7159c1" />
+        {data.labels.map(label => (
+          <Label key={label} color={label} />
+        ))}
       </header>
-      <p>fazerjsidjsdsaofoanfhoadnhfdfdof fdfnhdfos fsdfsd fsdfsdf</p>
-      <img
-        src="https://conteudo.imguol.com.br/c/noticias/92/2019/06/13/o-presidente-jair-bolsonaro-durante-solenidade-de-lancamento-de-linha-de-credito-do-bndes-para-organizacoes-filantropicas-no-palacio-do-planalto-1560435550104_v2_450x450.jpg"
-        alt=""
-      />
+      <p>{data.content}</p>
+      {data.user && <img src={data.user} alt="" />}
     </Container>
   );
 }
